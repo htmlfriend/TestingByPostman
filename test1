@@ -1,0 +1,101 @@
+// testing by request to swapi.dev by the Postman
+
+
+// 1. correct response format JSON
+
+pm.test('check response JSON', function(){
+    pm.response.to.have.jsonBody()
+});
+
+// 2. we have all the declared fields in the response
+pm.test('check that we have all the declared fields', function(){
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('people');
+    pm.expect(jsonData).to.have.property('planets');
+    pm.expect(jsonData).to.have.property('films');
+    pm.expect(jsonData).to.have.property('species');
+    pm.expect(jsonData).to.have.property('vehicles');
+    pm.expect(jsonData).to.have.property('starships');
+})
+
+// 3. Field value is not null
+
+pm.test('Is not null', function(){
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.people).not.equal(null);
+    pm.expect(jsonData.planets).not.equal(null); 
+    pm.expect(jsonData.films).not.equal(null);
+    pm.expect(jsonData.species).not.equal(null);
+    pm.expect(jsonData.vehicles).not.equal(null);
+    pm.expect(jsonData.starships).not.equal(null)
+})
+
+// 4. Field is not empty
+
+pm.test('Is not empty value', function(){
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.people).not.equal('');
+    pm.expect(jsonData.planets).not.equal(''); 
+    pm.expect(jsonData.films).not.equal('');
+    pm.expect(jsonData.species).not.equal('');
+    pm.expect(jsonData.vehicles).not.equal('');
+    pm.expect(jsonData.starships).not.equal('')
+})
+
+// 5. Check if field corresponds to a specific value
+
+pm.test('check a specific value', function(){
+    let jsonData = pm.response.json();
+    pm.expect(jsonData.people).to.equal("http://swapi.dev/api/people/");
+    pm.expect(jsonData.planets).to.equal("http://swapi.dev/api/planets/");
+    pm.expect(jsonData.films).to.equal("http://swapi.dev/api/films/");
+    pm.expect(jsonData.species).to.equal("http://swapi.dev/api/species/");
+    pm.expect(jsonData.vehicles).to.equal("http://swapi.dev/api/vehicles/");
+    pm.expect(jsonData.starships).to.equal("http://swapi.dev/api/starships/");
+})
+
+//6. Status code is 200
+
+pm.test('Status code is 200', function() {
+    pm.response.to.have.status(200);
+})
+
+//7. Response time is less 500ms
+pm.test('Response time is less than 500ms', function(){
+    pm.expect(pm.response.responseTime).to.be.below(500);
+})
+
+//8. Content-Type is present
+
+pm.test('Content-Type is present', function() {
+    pm.response.to.have.header('Content-Type');
+})
+
+//9. Content-Type is  equal application/json
+
+pm.test('Content-Type has value = application/jso', function() {
+    pm.response.to.be.header('Content-Type', 'application/json');
+})
+//10. Status message is ok
+
+pm.test('Status code is ok', function() {
+    pm.response.to.have.status('OK');
+})
+
+
+//11. cookies exist
+
+pm.test('Cookie exists', function() {
+    pm.cookies.has('_sdlfdjsljf')
+})
+
+//12. Cookie has value
+
+pm.test('Cookie has value', function() {
+    try{
+        let MY_COOKIE = pm.cookies.get('_cfdsdlfjs');
+        console.log(MY_COOKIE)
+    }catch(e) {
+        console.log('Some problem with cookie', e)
+    }
+})
