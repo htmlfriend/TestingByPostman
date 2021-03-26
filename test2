@@ -1,6 +1,8 @@
 // check JSON schema
 // requst to https://swapi.dev/api
 
+// share link https://www.getpostman.com/collections/e96194ab4d0eb8a16830
+
 let response = JSON.parse(responseBody);
 
 let schema ={
