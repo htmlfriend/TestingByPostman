@@ -1,0 +1,49 @@
+// check JSON schema
+// request to https://swapi.dev/api/people/1
+
+let getOnePerson = JSON.parse(responseBody);
+
+let schema ={
+    // specify the type of object
+    "type": "object",
+    // specify required properties
+    "required": ["name", "homeworld", "films","species", "vehicles", "starships"],
+    // discribe the properties
+    "properties" : {
+        "name" : {
+            "type" : "string"
+        },
+         "homeworld" : {
+            "type" : "string"
+        }, 
+        "films" : {
+            "type" : "array",
+            "items" : {
+                "type" : "string"
+            }
+        }, 
+        "species" : {
+            "type" : "array",
+            "items" : {
+                "type" : "string"
+            }
+        },
+         "vehicles" : {
+            "type" : "array",
+            "items" : {
+                "type" : "string"
+            }
+        }, 
+        "starships" : {
+            "type" : "array",
+            "items" : {
+                "type" : "string"
+            }
+        }
+    }
+
+}
+
+pm.test("Body is correct", function(){
+    pm.expect(tv4.validate(getOnePerson , schema)).to.be.true;
+})
