@@ -1,0 +1,37 @@
+// check JSON schema
+// requst to https://swapi.dev/api
+
+let response = JSON.parse(responseBody);
+
+let schema ={
+    // specify the type of object
+    "type": "object",
+    // specify required properties
+    "required": ["people", "planets", "films","species", "vehicles", "starships"],
+    // discribe the properties
+    "properties" : {
+        "people" : {
+            "type" : "string"
+        },
+         "planets" : {
+            "type" : "string"
+        }, 
+        "films" : {
+            "type" : "string"
+        }, 
+        "species" : {
+            "type" : "string"
+        },
+         "vehicles" : {
+            "type" : "string"
+        }, 
+        "starships" : {
+            "type" : "string"
+        }
+    }
+
+}
+
+pm.test("Body is correct", function(){
+    pm.expect(tv4.validate(response, schema)).to.be.true;
+})
