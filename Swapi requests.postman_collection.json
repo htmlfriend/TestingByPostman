@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "e1228de4-3497-4bae-991b-70c0baee8329",
+		"name": "Swapi requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test swapi.dev",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// check JSON schema\r",
+							"\r",
+							"let getOnePerson = JSON.parse(responseBody);\r",
+							"\r",
+							"let schema ={\r",
+							"    // specify the type of object\r",
+							"    \"type\": \"object\",\r",
+							"    // specify required properties\r",
+							"    \"required\": [\"name\", \"homeworld\", \"films\",\"species\", \"vehicles\", \"starships\"],\r",
+							"    // discribe the properties\r",
+							"    \"properties\" : {\r",
+							"        \"name\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        },\r",
+							"         \"homeworld\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        }, \r",
+							"        \"films\" : {\r",
+							"            \"type\" : \"array\",\r",
+							"            \"items\" : {\r",
+							"                \"type\" : \"string\"\r",
+							"            }\r",
+							"        }, \r",
+							"        \"species\" : {\r",
+							"            \"type\" : \"array\",\r",
+							"            \"items\" : {\r",
+							"                \"type\" : \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"         \"vehicles\" : {\r",
+							"            \"type\" : \"array\",\r",
+							"            \"items\" : {\r",
+							"                \"type\" : \"string\"\r",
+							"            }\r",
+							"        }, \r",
+							"        \"starships\" : {\r",
+							"            \"type\" : \"array\",\r",
+							"            \"items\" : {\r",
+							"                \"type\" : \"string\"\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Body is correct\", function(){\r",
+							"    pm.expect(tv4.validate(getOnePerson , schema)).to.be.true;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/people/1",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"people",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// check JSON schema\r",
+							"// requst to https://swapi.dev/api\r",
+							"\r",
+							"let response = JSON.parse(responseBody);\r",
+							"\r",
+							"let schema ={\r",
+							"    // specify the type of object\r",
+							"    \"type\": \"object\",\r",
+							"    // specify required properties\r",
+							"    \"required\": [\"people\", \"planets\", \"films\",\"species\", \"vehicles\", \"starships\"],\r",
+							"    // discribe the properties\r",
+							"    \"properties\" : {\r",
+							"        \"people\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        },\r",
+							"         \"planets\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        }, \r",
+							"        \"films\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        }, \r",
+							"        \"species\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        },\r",
+							"         \"vehicles\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        }, \r",
+							"        \"starships\" : {\r",
+							"            \"type\" : \"string\"\r",
+							"        }\r",
+							"    }\r",
+							"\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Body is correct\", function(){\r",
+							"    pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTonasa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key=qJ5lyJUwZN490l4fH7iK6tKjhjaOma76IxJZY2RX&hd=true",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "qJ5lyJUwZN490l4fH7iK6tKjhjaOma76IxJZY2RX"
+						},
+						{
+							"key": "hd",
+							"value": "true"
+						},
+						{
+							"key": "data",
+							"value": "2021-03-23",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"yura\"\r\n}"
+				},
+				"url": {
+					"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io/action",
+					"protocol": "https",
+					"host": [
+						"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"action"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"yura\"\r\n}"
+						},
+						"url": {
+							"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io/action",
+							"protocol": "https",
+							"host": [
+								"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"action"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 01:53:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=9f93cbb09c596722"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=2ab5a3e4793beebd"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1616809930"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"Yura yura\",\n        \"message\": \"Sussess\",\n        \"status\": \"created\",\n        \"header\": \"Request was Sussess\"\n    }\n}"
+				},
+				{
+					"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+							"protocol": "https",
+							"host": [
+								"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+								"mock",
+								"pstmn",
+								"io"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 01:51:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=9f93cbb09c596722"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=2ab5a3e4793beebd"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1616809930"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"test\",\n        \"message\": \"Sussess\",\n        \"header\": \"Request was Sussess\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"yura\"\r\n}"
+				},
+				"url": {
+					"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+					"protocol": "https",
+					"host": [
+						"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+						"mock",
+						"pstmn",
+						"io"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"yura\"\r\n}"
+						},
+						"url": {
+							"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io/action",
+							"protocol": "https",
+							"host": [
+								"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"action"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 01:53:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=9f93cbb09c596722"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=2ab5a3e4793beebd"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1616809930"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"Yura yura\",\n        \"message\": \"Sussess\",\n        \"status\": \"created\",\n        \"header\": \"Request was Sussess\"\n    }\n}"
+				},
+				{
+					"name": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://8e3a2e84-239b-4668-a922-048dbf7aea4b.mock.pstmn.io",
+							"protocol": "https",
+							"host": [
+								"8e3a2e84-239b-4668-a922-048dbf7aea4b",
+								"mock",
+								"pstmn",
+								"io"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 01:51:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=9f93cbb09c596722"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=2ab5a3e4793beebd"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1616809930"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"test\",\n        \"message\": \"Sussess\",\n        \"header\": \"Request was Sussess\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
